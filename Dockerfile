@@ -44,6 +44,7 @@ RUN curl -sSL $STEAM_URL | gosu $STEAM_USER tar -xzvC $STEAM_HOME
 # Install Don't Starve Together Server.
 RUN mkdir -p $DST_HOME \
     && chown $STEAM_USER:$STEAM_USER $DST_HOME \
+    && ulimit -n 2048 \
     && gosu $STEAM_USER steamcmd \
       +@ShutdownOnFailedCommand 1 \
       +login anonymous \
