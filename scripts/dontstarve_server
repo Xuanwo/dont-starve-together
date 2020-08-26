@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
+# Make sure all files are belong to user steam.
 chown -R $STEAM_USER:$STEAM_USER "$CLUSTER_PATH"
 
+# Workaround for main.lua not load
 cd $DST_HOME/bin
 
 gosu "$STEAM_USER" ./dontstarve_dedicated_server_nullrenderer \
