@@ -17,9 +17,6 @@ ENV DST_BRANCH ${DST_BRANCH}
 ARG DST_BRANCH_PASSWORD
 ENV DST_BRANCH_PASSWORD ${DST_BRANCH_PASSWORD}
 
-# Set up volumes for presist files.
-VOLUME ["$DST_HOME/mods", "$DST_CLUSTER_PATH"]
-
 # Add our user/group first to ensure their IDs get set consistently.
 RUN groupadd -r $STEAM_USER && useradd -rm -d $STEAM_HOME -g $STEAM_USER $STEAM_USER
 
@@ -56,5 +53,8 @@ RUN mkdir -p $DST_HOME \
       +quit \
     && rm -rf $STEAM_HOME/Steam/logs $STEAM_HOME/Steam/appcache/httpcache \
     && find $STEAM_HOME/package -type f ! -name "steam_cmd_linux.installed" ! -name "steam_cmd_linux.manifest" -delete
+
+# Set up volumes for presist files.
+VOLUME ["$DST_HOME/mods", "$DST_CLUSTER_PATH"]
 
 CMD ["dontstarve_server"]
