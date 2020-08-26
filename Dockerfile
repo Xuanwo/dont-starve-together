@@ -27,12 +27,7 @@ COPY scripts/* /usr/bin/
 RUN yum makecache && yum -y install glibc.i686 && yum clean all
 
 # Install gusu
-RUN gpg --keyserver pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
-    && curl -o /usr/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-amd64" \
-    && curl -o /usr/bin/gosu.asc -SL "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-amd64.asc" \
-    && gpg --verify /usr/bin/gosu.asc \
-    && rm /usr/bin/gosu.asc \
-    && rm -r /root/.gnupg/ \
+RUN curl -o /usr/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-amd64" \
     && chmod +x /usr/bin/gosu
 
 # Install steamcmd
