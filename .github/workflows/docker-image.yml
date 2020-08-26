@@ -19,7 +19,7 @@ jobs:
         username: Xuanwo
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
-        repository: Xuanwo/dont-starve-together 
+        repository: xuanwo/dont-starve-together
         tags: latest
         tag_with_ref: true
         tag_with_sha: true
