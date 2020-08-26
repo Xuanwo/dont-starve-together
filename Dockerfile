@@ -24,7 +24,7 @@ VOLUME ["$DST_HOME/mods", "$DST_CLUSTER_PATH"]
 RUN groupadd -r $STEAM_USER && useradd -rm -d $STEAM_HOME -g $STEAM_USER $STEAM_USER
 
 # Copy scripts
-COPY scripts/* /usr/bin
+COPY scripts/* /usr/bin/
 
 # Install dependences
 RUN yum makecache && yum -y install glibc.i686 && yum clean all
