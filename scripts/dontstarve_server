@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+chown -R $STEAM_USER:$STEAM_USER "$CLUSTER_PATH"
+
+gosu "$STEAM_USER" $DST_HOME/dontstarve_dedicated_server_nullrenderer \
+    -persistent_storage_root "$(dirname "$CLUSTER_PATH")" \
+    -conf_dir "." \
+    -cluster "$(basename "$CLUSTER_PATH")" \
+    -shard "$DST_SHARD"
