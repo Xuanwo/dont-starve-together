@@ -2,7 +2,9 @@
 
 chown -R $STEAM_USER:$STEAM_USER "$CLUSTER_PATH"
 
-gosu "$STEAM_USER" $DST_HOME/bin/dontstarve_dedicated_server_nullrenderer \
+cd $DST_HOME/bin
+
+gosu "$STEAM_USER" ./dontstarve_dedicated_server_nullrenderer \
     -persistent_storage_root "$(dirname "$CLUSTER_PATH")" \
     -conf_dir "." \
     -cluster "$(basename "$CLUSTER_PATH")" \
