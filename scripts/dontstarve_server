@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Make sure all files are belong to user steam.
+chown -R $STEAM_USER:$STEAM_USER "$DST_HOME/mods"
 chown -R $STEAM_USER:$STEAM_USER "$CLUSTER_PATH"
 
 # Workaround for main.lua not load
