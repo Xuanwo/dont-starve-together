@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
 
+# Exit immediately on non-zero return codes.
+set -e
+
 # Make sure all files are belong to user steam.
 chown -R $STEAM_USER:$STEAM_USER "$DST_HOME/mods"
-chown -R $STEAM_USER:$STEAM_USER "$CLUSTER_PATH"
+chown -R $STEAM_USER:$STEAM_USER "$DST_CLUSTER_PATH"
 
 # Workaround for main.lua not load
 cd $DST_HOME/bin
 
 gosu "$STEAM_USER" ./dontstarve_dedicated_server_nullrenderer \
-    -persistent_storage_root "$(dirname "$CLUSTER_PATH")" \
+    -persistent_storage_root "$(dirname "$DST_CLUSTER_PATH")" \
     -conf_dir "." \
-    -cluster "$(basename "$CLUSTER_PATH")" \
+    -cluster "$(basename "$DST_CLUSTER_PATH")" \
     -shard "$DST_SHARD"
