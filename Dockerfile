@@ -55,4 +55,4 @@ RUN ln -s /usr/lib/libcurl.so.4 /usr/lib/libcurl-gnutls.so.4
 # Set up volumes for presist files.
 VOLUME ["$DST_HOME/mods", "$DST_CLUSTER_PATH"]
 
-CMD dontstarve_server
+ENTRYPOINT exec dontstarve_server
