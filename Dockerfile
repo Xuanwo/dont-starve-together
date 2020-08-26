@@ -24,7 +24,8 @@ RUN groupadd -r $STEAM_USER && useradd -rm -d $STEAM_HOME -g $STEAM_USER $STEAM_
 COPY scripts/* /usr/bin/
 
 # Install dependences
-RUN yum makecache && yum -y install glibc.i686 && yum clean all
+# CentOS 8 install libcurl-minimal by default, install libcurl.i686 --allowerasing will remove it and install libcurl
+RUN yum makecache && yum -y install glibc.i686 libstdc++ libstdc++.i686 libcurl libcurl.i686 --allowerasing && yum clean all
 
 # Install gusu
 RUN curl -o /usr/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-amd64" \
@@ -48,6 +49,8 @@ RUN mkdir -p $DST_HOME \
       +quit \
     && rm -rf $STEAM_HOME/Steam/logs $STEAM_HOME/Steam/appcache/httpcache \
     && find $STEAM_HOME/package -type f ! -name "steam_cmd_linux.installed" ! -name "steam_cmd_linux.manifest" -delete
+# Workaround for "libcurl-gnutls.so.4: cannot open shared object file: No such file or directory"
+RUN ln -s /usr/lib/libcurl.so.4 /usr/lib/libcurl-gnutls.so.4
 
 # Set up volumes for presist files.
 VOLUME ["$DST_HOME/mods", "$DST_CLUSTER_PATH"]
