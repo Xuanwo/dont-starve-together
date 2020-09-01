@@ -21,5 +21,3 @@ jobs:
         registry: docker.pkg.github.com
         repository: xuanwo/dont-starve-together/server
         tags: latest
-        tag_with_ref: true
-        tag_with_sha: true
